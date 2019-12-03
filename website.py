@@ -6,7 +6,9 @@ app = Flask(__name__)
 @app.route("/")
 def form():
     return render_template('form.html')
-
+@app.route("/EVERYTHINGISONFIRE")
+def formTWO():
+    return render_template('formTWO.html')
 @app.route("/sms", methods=['GET', 'POST'])
 def sms_reply():
     body = request.values.get('Body', None)
@@ -16,13 +18,15 @@ def sms_reply():
     try:
         body = body.encode("ASCII")
         body = body.decode("ASCII")
-        resp.message(body)
+        resp.message("THIS TEXT DID NOTHING TRY AGAIN: " + body + '\n' + "http://1111a976.ngrok.io/")
+        return str(resp)
         pass
     except :
-        body = str("GOOD JOB BUUDDY YOU BROKE IT")
+        body = str("LOOK WHAT YOU DID..." + '\n' + "http://1111a976.ngrok.io/EVERYTHINGISONFIRE")
         resp.message(body)
+        return str(resp)
         pass
 
-    return str(resp)
+
 if __name__ == "__main__":
     app.run(debug=True)
