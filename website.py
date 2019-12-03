@@ -1,16 +1,28 @@
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, request, render_template
+from twilio import twiml 
+from twilio.twiml.messaging_response import MessagingResponse
+app = Flask(__name__)
 
-website = Flask(__name__)
-
-@website.route('/')
+@app.route("/")
 def form():
     return render_template('form.html')
 
-@website.route('/', methods=['POST'])
-def form_post():    
-    text = request.form['text']
-    processed_text = jsonify(text)
-    return processed_text
+@app.route("/sms", methods=['GET', 'POST'])
+def sms_reply():
+    body = request.values.get('Body', None)
+    resp = MessagingResponse()
 
+    body = str(body)
+    try:
+        body = body.encode("ASCII")
+        body = body.decode("ASCII")
+        resp.message(body)
+        pass
+    except :
+        body = str("GOOD JOB BUUDDY YOU BROKE IT")
+        resp.message(body)
+        pass
+
+    return str(resp)
 if __name__ == "__main__":
-    website.run(debug=True)
+    app.run(debug=True)
