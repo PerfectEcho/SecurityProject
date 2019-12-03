@@ -18,11 +18,11 @@ def sms_reply():
     try:
         body = body.encode("ASCII")
         body = body.decode("ASCII")
-        resp.message("THIS TEXT DID NOTHING TRY AGAIN: " + body + '\n' + "http://1111a976.ngrok.io/")
+        resp.message("THIS TEXT DID NOTHING TRY AGAIN: " + body + '\n' + "http://1111a976.ngrok.io/") #This is going to change 
         return str(resp)
         pass
     except :
-        body = str("LOOK WHAT YOU DID..." + '\n' + "http://1111a976.ngrok.io/EVERYTHINGISONFIRE")
+        body = str("LOOK WHAT YOU DID..." + '\n' + "http://1111a976.ngrok.io/EVERYTHINGISONFIRE") # ... aaand so is this
         resp.message(body)
         return str(resp)
         pass
